@@ -86,7 +86,6 @@ class DataAnalyst:
         import json
         import re
         
-        # Look for Chart.js config in the response
         config_match = re.search(r'const config = ({.*?});', content, re.DOTALL)
         if config_match:
             try:
