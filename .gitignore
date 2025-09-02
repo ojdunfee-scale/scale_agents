@@ -10,6 +10,10 @@ build/
 .venv
 .env
 
-# files
+# Generated charts and logs
+mcp_servers/*/charts/*.html
+mcp_servers/*/logs/*.log
+
+# CSV data files
 data/lc_orders.csv
 data/lc_spend.csv
