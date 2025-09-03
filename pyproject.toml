@@ -6,6 +6,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=0.64.0",
+    "langchain>=0.3.27",
+    "langchain-anthropic>=0.3.19",
+    "matplotlib>=3.10.6",
     "mcp>=1.13.1",
     "numpy>=2.3.2",
     "pandas>=2.3.2",

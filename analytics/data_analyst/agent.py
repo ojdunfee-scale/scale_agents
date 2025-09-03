@@ -14,11 +14,11 @@ class DataAnalyst:
     async def run(self, prompt: str):
         pandas_params = StdioServerParameters(
             command="python",
-            args=[os.path.abspath("mcp_servers/pandas-mcp-server/server.py")]
+            args=[os.path.abspath("/home/owen/dev/scale_agents/mcp_servers/pandas-mcp-server/server.py")]
         )
         filesystem_params = StdioServerParameters(
             command="npx",
-            args=["-y", "@modelcontextprotocol/server-filesystem", os.path.abspath("data")]
+            args=["-y", "@modelcontextprotocol/server-filesystem", "/home/owen/dev/scale_agents/data"]
         )
 
         async with stdio_client(filesystem_params) as (fs_read, fs_write), \
@@ -87,6 +87,7 @@ class DataAnalyst:
         import re
         
         config_match = re.search(r'const config = ({.*?});', content, re.DOTALL)
+        return json.loads(config_match.group(1))
         if config_match:
             try:
                 return json.loads(config_match.group(1))
@@ -98,7 +99,7 @@ async def main():
     analyst = DataAnalyst(os.getenv("ANTHROPIC_API_KEY"))
     # await analyst.run("Tell me what files you have available to load in the data directory.")
     # await analyst.run("of the files you listed load the one most likely associated with revenue and describe it to me")
-    await analyst.run("using pandas can you plot the revenue over time for me? You will need to use your tools to determine which file to load that you have available and then use your tools to plot this")
+    await analyst.run("using pandas can you plot the revenue over time for me? You will need to use your tools to determine which file to load that you have available and then to plot the graph.")
 
 if __name__ == '__main__':
     asyncio.run(main())
